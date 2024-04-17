@@ -1,8 +1,10 @@
 import React, { useEffect } from 'react';
-import { View } from 'react-native';
+import { View,Button,Text } from 'react-native';
 import { Link, useRouter } from 'expo-router';
 import servicrs from '../../utils/servicrs';
+import { client } from '../../utils/kindconfig';
 export default function Page() {
+
   const router=useRouter();
   useEffect(()=>{
     checkUserAuth();
@@ -13,10 +15,18 @@ export default function Page() {
       router.replace('./login')
      }
     }
+    const handleLogout = async () => {
+      const loggedOut = await client.logout();
+      if (loggedOut) {
+          await servicrs.storeData('login','false');
+          router.replace('./login')
+      }
+  };
 
   return (
     <View>
       <Link href="./">Home</Link>
+      <Text onPress={handleLogout}>Logout</Text>
     </View>
   );
 }
