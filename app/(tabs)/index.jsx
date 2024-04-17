@@ -25,7 +25,6 @@ export default function Page() {
 
   return (
     <View>
-      <Link href="./">Home</Link>
       <Text onPress={handleLogout}>Logout</Text>
     </View>
   );

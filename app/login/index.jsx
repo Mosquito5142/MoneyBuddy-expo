@@ -12,7 +12,7 @@ export default function App() {
     if (token) {
       // User was authenticated
       await servicrs.storeData('login','true');
-      router.replace('./Home')
+      router.replace('./(tabs)')
     }
   };
   return (
